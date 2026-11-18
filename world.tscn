@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cpngry6v2m5f2"]
+
+[ext_resource type="Shader" uid="uid://dg6nmnfsrawg6" path="res://vertexlitgeneric.gdshader" id="1_fj7yv"]
+[ext_resource type="Texture2D" uid="uid://bu02q4daifc63" path="res://vortigaunt_base.tga" id="2_aqk2v"]
+[ext_resource type="Texture2D" uid="uid://bj4twdaa53gq" path="res://vortigaunt_normal.tga" id="3_036b0"]
+[ext_resource type="ArrayMesh" uid="uid://bmembniuwlsi0" path="res://vortigaunt.res" id="3_tlwt5"]
+[ext_resource type="Texture2D" uid="uid://b6eqxxkc3ggh2" path="res://vortigaunt_exponent.tga" id="4_036b0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aqk2v"]
+render_priority = 0
+shader = ExtResource("1_fj7yv")
+shader_parameter/albedo = ExtResource("2_aqk2v")
+shader_parameter/bump_map = ExtResource("3_036b0")
+shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/half_lambert = true
+shader_parameter/allow_albedo_modulation = true
+shader_parameter/albedo_alpha_phong_mask = false
+shader_parameter/phong = true
+shader_parameter/phong_albedo_tint = false
+shader_parameter/invert_phong_mask = false
+shader_parameter/phong_exponent_texture = ExtResource("4_036b0")
+shader_parameter/phong_tint = Color(1, 1, 1, 1)
+shader_parameter/phong_fresnel_ranges = Vector3(0.18, 0.4, 1)
+shader_parameter/phong_exponent = 0.0
+shader_parameter/phong_boost = 10.0
+shader_parameter/phong_exponent_factor = 1.0
+shader_parameter/self_illum = false
+shader_parameter/self_illum_tint = Color(1, 1, 1, 1)
+shader_parameter/emissive_blend = false
+shader_parameter/emissive_blend_strength = 1.0
+shader_parameter/emissive_blend_scroll_vector = Vector2(0, 0)
+shader_parameter/emissive_blend_tint = Color(1, 1, 1, 1)
+shader_parameter/rimlight = true
+shader_parameter/rimlight_mask = 0.0
+shader_parameter/rimlight_exponent = 4.722000224295
+shader_parameter/rimlight_boost = 56.42
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+background_energy_multiplier = 0.0
+
+[node name="World" type="Node3D" unique_id=1169877362]
+
+[node name="Sphere" type="MeshInstance3D" parent="." unique_id=200495853]
+transform = Transform3D(1.9139044, 0.021741219, 0.06100376, -0.06123056, 0.019930411, 1.913917, 0.021094026, -1.9147727, 0.020614166, -1.2274804, -0.29089224, -0.33314037)
+material_override = SubResource("ShaderMaterial_aqk2v")
+mesh = ExtResource("3_tlwt5")
+
+[node name="Key" type="DirectionalLight3D" parent="." unique_id=2127776289]
+transform = Transform3D(0.4969739, 0.37084645, -0.78453165, 0, 0.9040826, 0.4273579, 0.8677655, -0.21238573, 0.44930542, -4.895181, 3.01828, 2.4584532)
+light_color = Color(1, 0.9490196, 0.7882353, 1)
+light_energy = 0.02
+light_indirect_energy = 0.0
+sky_mode = 1
+
+[node name="Fill" type="SpotLight3D" parent="." unique_id=2062849472]
+transform = Transform3D(0.7760464, -0.16641834, 0.60832304, 0, 0.9645574, 0.26387304, -0.6306758, -0.20477772, 0.7485413, 2.1196375, 1.3392947, 3.461009)
+light_color = Color(1, 0.83466667, 0.69, 1)
+light_energy = 1.596
+light_indirect_energy = 0.0
+light_specular = 1.0
+spot_attenuation = 0.0
+
+[node name="Rim" type="OmniLight3D" parent="." unique_id=1929617400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2498641, 1.2570548, -2.071602)
+light_color = Color(1, 0.65, 0.8949999, 1)
+light_energy = 0.02
+light_indirect_energy = 0.0
+light_specular = 1.0
+omni_attenuation = 0.0
+
+[node name="White" type="DirectionalLight3D" parent="." unique_id=1211290966]
+transform = Transform3D(-0.24043679, 0.4148212, -0.87756115, 9.015777e-09, 0.9040826, 0.42735782, 0.9706648, 0.10275254, -0.21737471, -1.6190321, 1.1966834, 1.6696954)
+visible = false
+light_energy = 0.05
+light_indirect_energy = 0.0
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1578144539]
+environment = SubResource("Environment_g4v7s")
